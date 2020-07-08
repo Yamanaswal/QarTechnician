@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.QarWalletActivity">
+
+    <include
+        layout="@layout/toolbar_two"
+        android:id="@+id/toolbar"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/total_price"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/green_colour_dark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/today_text"
+                android:text="@string/today"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                android:layout_marginStart="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_below="@+id/today_text"
+                android:text="@string/earnings"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/kastelov_axiforma_semibold"
+                android:layout_marginBottom="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="@string/text_2500"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_toStartOf="@+id/qar_text"
+                android:layout_marginTop="22dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/kastelov_axiforma_semibold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/qar_text"
+                android:text="@string/qar"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="22dp"
+                android:textAllCaps="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="5dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_below="@+id/total_price"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:text="@string/money_withdraw"
+        android:paddingTop="18dp"
+        android:background="@drawable/orange_cardview"
+        android:paddingBottom="17dp"
+        android:textAllCaps="false"
+        android:paddingEnd="22dp"
+        android:elevation="2dp"
+        android:paddingStart="23dp"
+        android:drawablePadding="10dp"
+        android:textSize="14sp"
+        android:drawableStart="@drawable/withdraw_icon"
+        android:textColor="@color/black_color"
+        android:fontFamily="@font/kastelov_axiforma_semibold"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".screens.SelectPreferencesActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/continue_button"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/select_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/kastelov_axiforma_extrabold"
+                android:text="@string/select"
+                android:textAllCaps="true"
+                android:textColor="@color/orange_colour"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/pref_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/select_text"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/kastelov_axiforma_extrabold"
+                android:text="@string/preferences"
+                android:textAllCaps="true"
+                android:textColor="@color/black_color"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/select_lang_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pref_text"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="39dp"
+                android:fontFamily="@font/kastelov_axiforma_semibold"
+                android:text="@string/select_your_language"
+                android:textColor="@color/black_color"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/english_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/select_lang_text"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/cardview_border_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:fontFamily="@font/kastelov_axiforma_semibold"
+                    android:text="@string/english"
+                    android:textColor="@color/orange_colour"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="21dp"
+                    android:src="@mipmap/tick" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/arabic_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/english_select"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/cardview_border_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:fontFamily="@font/kastelov_axiforma_semibold"
+                    android:text="@string/arabic"
+                    android:textColor="@color/black_dot_color"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="21dp"
+                    android:src="@mipmap/tick"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/i_am_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/arabic_select"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/kastelov_axiforma_semibold"
+                android:text="@string/i_am"
+                android:textColor="@color/black_color"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/technician_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/i_am_text"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/cardview_border_background">
+
+                <TextView
+                    android:id="@+id/technician_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:fontFamily="@font/kastelov_axiforma_semibold"
+                    android:text="@string/technician"
+                    android:textColor="@color/black_dot_color"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/tech_tick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="21dp"
+                    android:src="@mipmap/tick"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/garage_owner_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/technician_select"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/cardview_border_background">
+
+                <TextView
+                    android:id="@+id/garage_owner_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="17dp"
+                    android:fontFamily="@font/kastelov_axiforma_semibold"
+                    android:text="@string/garage_owner"
+                    android:textColor="@color/orange_colour"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/garage_tick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="21dp"
+                    android:src="@mipmap/tick" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange_colour"
+        android:fontFamily="@font/kastelov_axiforma_bold"
+        android:text="@string/continue_text"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" />
+
+</RelativeLayout>

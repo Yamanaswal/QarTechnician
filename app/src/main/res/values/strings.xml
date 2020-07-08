@@ -1,0 +1,160 @@
+<resources>
+    <string name="app_name">QarGarage</string>
+    <string name="under_development">Under Development</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="email_address">Email Address</string>
+    <string name="welcome_to">Welcome To</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="forget_password">Forgot Password?</string>
+    <string name="select">Select</string>
+    <string name="arabic">Arabic</string>
+    <string name="english">English</string>
+    <string name="i_am">I am</string>
+    <string name="select_your_language">Select Your Language</string>
+    <string name="preferences">Preferences</string>
+    <string name="garage_owner">Garage Owner</string>
+    <string name="technician">Technician</string>
+    <string name="continue_text">Continue</string>
+    <string name="splash_text">At Your Service, At Your Location</string>
+    <string name="service">Service</string>
+    <string name="qar">Qar</string>
+    <string name="forget_info_text">Enter the email address associated with your account</string>
+    <string name="send">Send</string>
+    <string name="forgot">Forgot</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="home">Home</string>
+    <string name="appointments">Appointments</string>
+    <string name="chat">Chat</string>
+    <string name="call">Call</string>
+    <string name="transc_history">Transc. History</string>
+    <string name="profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mark_your_visibility">Mark your visibility</string>
+    <string name="abc_garage">ABC Garage</string>
+    <string name="garage_name">Garage name</string>
+    <string name="car_steam_wash">Car Steam Wash</string>
+    <string name="service_date">11 Mar 2020, 10:28 AM</string>
+    <string name="reject">Reject</string>
+    <string name="confirm">Confirm</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="order">Order</string>
+    <string name="order_number">25</string>
+    <string name="mark_white">Mark White</string>
+    <string name="engine_oil_change">Engine Oil Change</string>
+    <string name="appoint_no_2526352">Appoint. No - 2526352</string>
+    <string name="date_on_card">5 Mar, 2018, 9 to 10AM</string>
+    <string name="hyundai">Hyundai</string>
+    <string name="vehicle_no_qatar_256356">Vehicle No. QATAR 256356</string>
+    <string name="upcoming_order">Upcoming Order</string>
+    <string name="update_status">Update Status</string>
+    <string name="ongoing_order">Ongoing Order</string>
+    <string name="vehicle_no">Vehicle No.</string>
+    <string name="booked_on">Booked On</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="online">Online</string>
+    <string name="date_11_mar_2018">11 Mar 2018</string>
+    <string name="qatar_25_2515">QATAR 25 2515</string>
+    <string name="your_booking_is_confirmed">Your Booking is Confirmed!</string>
+    <string name="time_10_30_am">10:30 AM</string>
+    <string name="email_profile_text">johndoe123@gmail.com</string>
+    <string name="john_doe">John Doe</string>
+    <string name="account_settings">Account Settings</string>
+    <string name="manage_dates">Manage Dates</string>
+    <string name="terms_and_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="about_us">About us</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="notifications">Notifications</string>
+    <string name="change_language">Change Language</string>
+    <string name="log_out">Log Out</string>
+    <string name="technician_management">Technician Management</string>
+    <string name="service_location_text">At Your Service, At Your Location</string>
+    <string name="email_text">johndoe123@gmail.com</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="mobile_91_95236_25362">+91 95236 25362</string>
+    <string name="change_password">Change Password</string>
+    <string name="select_preferred_time">Select Preferred Time</string>
+    <string name="mark_your_availability">Mark your Availability</string>
+    <string name="time_8am_10am">8AM - 10AM</string>
+    <string name="john_peters">John Peters</string>
+    <string name="technician_text">(Technician)</string>
+    <string name="permission">Permission</string>
+    <string name="select_job_update">Select Job Update</string>
+    <string name="photos">Photos</string>
+    <string name="save">Save</string>
+    <string name="address_a_122_sector_63_noida_india">A-122, Sector-63, Noida, India</string>
+    <string name="date_5_mar_2018">5 Mar 2018</string>
+    <string name="time_10am_12pm">10AM-12PM</string>
+    <string name="select_reason">Select Reason</string>
+    <string name="lorem_text">Lorem ipsum solon dokdin dieko</string>
+    <string name="submit">Submit</string>
+    <string name="old_password">Old Password</string>
+    <string name="enter_old_password">Enter Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="no_internet_text">No Internet!!</string>
+    <string name="somethingwentwrong">Something Went Wrong</string>
+    <string name="write_here">Write here...</string>
+    <string name="title_name">Title name</string>
+    <string name="create_inspection_report">Create Inspection Report</string>
+    <string name="today">Today</string>
+    <string name="earnings">Earnings</string>
+    <string name="text_2500">2500</string>
+    <string name="money_withdraw">Money Withdraw</string>
+    <string name="qar_wallet">Qar Wallet</string>
+    <string name="today_s_history">Today\'s History</string>
+    <string name="tell_me_more_about_it">Tell me more about it</string>
+    <string name="additional_feedback">Additional Feedback</string>
+    <string name="completed">Completed</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="cancelled_on">Cancelled on</string>
+    <string name="reason_for_cancellation">Reason for Cancellation</string>
+    <string name="lorem_demo_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptuairmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita</string>
+    <string name="to">To</string>
+    <string name="from_date">From Date</string>
+    <string name="sedan">Sedan</string>
+    <string name="view_quotation">View Quotation</string>
+    <string name="order_status">Order Status</string>
+    <string name="recent_activity">Recent Activity</string>
+    <string name="service_in_progress">Service in Progress</string>
+    <string name="time_5_31pm">5:31PM</string>
+    <string name="raise_quotation">Raise Quotation</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="my_appointments">My Appointments</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="date_5_mar_5_30pm">5 Mar, 5:30PM</string>
+    <string name="vehicle_picked">Vehicle Picked</string>
+    <string name="service_started">Service Started</string>
+    <string name="inspection_report">Inspection Report</string>
+    <string name="service_completed">Service Completed</string>
+    <string name="vehicle_dropoff">Vehicle Dropoff</string>
+    <string name="payment_received">Payment Received</string>
+    <string name="start">Start</string>
+    <string name="create">Create</string>
+    <string name="reason_for_reject">Reason for Reject</string>
+    <string name="raise_quotations">Raise Quotations</string>
+    <string name="quatation">Quotation</string>
+    <string name="type_your_message_here">Type your message here...</string>
+    <string name="lorem_chat_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr , sed diam nonumy eirmod</string>
+    <string name="date_10_30am">10:30AM</string>
+    <string name="i_am_fine_what_about_you">I am fine, What about you?</string>
+    <string name="chat_admin">Chat with Admin</string>
+
+    <!--    Technician Management Strings -->
+    <string-array name="job_update">
+        <item>Select Job Update</item>
+        <item>Available</item>
+        <item>UnAvailable</item>
+    </string-array>
+
+    <string-array name="service_required">
+        <item>Unavailable</item>
+        <item>Available</item>
+    </string-array>
+
+
+
+</resources>

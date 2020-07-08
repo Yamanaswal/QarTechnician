@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainId"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_image"
+            android:layout_width="45.92dp"
+            android:layout_height="45.92dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="12.75dp"
+            android:alpha="0.2"
+            android:src="@color/orange_colour" />
+
+        <TextView
+            android:id="@+id/booking_confirm_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="9dp"
+            android:layout_toEndOf="@+id/circle_image"
+            android:fontFamily="@font/kastelov_axiforma_semibold"
+            android:text="@string/your_booking_is_confirmed"
+            android:textAlignment="textStart"
+            android:textColor="@color/black_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/booking_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/booking_confirm_text"
+            android:layout_marginBottom="13.7dp"
+            android:layout_toEndOf="@+id/circle_image"
+            android:fontFamily="@font/kastelov_axiforma_medium"
+            android:text="@string/time_10_30_am"
+            android:textColor="@color/black_dot_color"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

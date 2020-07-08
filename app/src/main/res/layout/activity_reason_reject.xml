@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.ReasonRejectActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_two" />
+
+    <TextView
+        android:id="@+id/text_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/kastelov_axiforma_semibold"
+        android:text="@string/tell_me_more_about_it"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_one"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/cardview_white_background" />
+
+    <TextView
+        android:id="@+id/additional_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler_view"
+        android:layout_marginStart="11dp"
+        android:fontFamily="@font/kastelov_axiforma_medium"
+        android:text="@string/additional_feedback"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/additional_text"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/cardview_white_background"
+        android:hint="@string/write_here"
+        android:inputType="textMultiLine"
+        android:paddingStart="16dp"
+        android:paddingTop="19dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black_dot_color"
+        android:textColorHint="@color/black_dot_color"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/orange_colour"
+        android:fontFamily="@font/kastelov_axiforma_bold"
+        android:text="@string/submit"
+        android:textAlignment="center"
+        android:textColor="@color/black_color"
+        android:textSize="18sp" />
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.home_fragments.ChatFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_two" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/sent_card"
+        android:layout_below="@+id/toolbar"
+        android:clipToPadding="false"
+        android:paddingBottom="20dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sent_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:cardElevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/chat_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toStartOf="@+id/sent_button"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:hint="@string/type_your_message_here"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_dot_color"
+                android:textColorHint="@color/black_dot_color"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/sent_button"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="7dp"
+                android:background="@android:color/transparent"
+                android:src="@mipmap/sent_button" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

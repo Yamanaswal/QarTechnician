@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.app.qartechnician">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <application
+        android:name=".utils.AppController"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".screens.OrderDetailsActivity" />
+        <activity android:name=".screens.QuotationActivity" />
+        <activity android:name=".screens.QarWalletActivity" />
+        <activity android:name=".screens.ReasonRejectActivity" />
+        <activity android:name=".screens.CreateInspectionReportActivity" />
+        <activity android:name=".screens.ChangePasswordActivity" />
+        <activity android:name=".screens.EditProfileActivity" />
+        <activity android:name=".screens.ManageDatesActivity" />
+        <activity android:name=".screens.TechnicianManagementActivity" />
+        <activity android:name=".screens.TermsConditionActivity" />
+        <activity android:name=".screens.PrivacyPolicyActivity" />
+        <activity android:name=".screens.AboutUsActivity" />
+        <activity android:name=".screens.NotificationsActivity" />
+        <activity android:name=".screens.TodayJobActivity" />
+        <activity android:name=".screens.OngoingOrderActivity" />
+        <activity android:name=".screens.UpcomingOrderActivity" />
+        <activity android:name=".screens.HomeActivity" />
+        <activity android:name=".screens.LoginActivity" />
+        <activity android:name=".screens.ForgetPasswordActivity" />
+        <activity android:name=".screens.SelectPreferencesActivity" />
+        <activity android:name=".screens.SplashActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.ManageDatesActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_two" />
+
+    <TextView
+        android:id="@+id/mark_avail_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/kastelov_axiforma_semibold"
+        android:text="@string/mark_your_availability"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:id="@+id/calender_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mark_avail_text"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:elevation="2dp"
+        android:translationZ="3dp"
+        android:background="@drawable/cardview_white_background"
+        android:layout_marginEnd="10dp">
+
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mcv_calendarMode="week" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="48dp"
+            android:background="@color/silver_dark" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/pref_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calender_relative"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/kastelov_axiforma_semibold"
+        android:text="@string/select_preferred_time"
+        android:textColor="@color/black_color"
+        android:textSize="16sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pref_time_text"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp" />
+
+</RelativeLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="145dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/chat_background_white">
+
+        <TextView
+            android:id="@+id/chat_message_receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="27dp"
+            android:fontFamily="@font/kastelov_axiforma_medium"
+            android:lineSpacingExtra="10dp"
+            android:text="@string/i_am_fine_what_about_you"
+            android:textColor="@color/black_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/chat_date_receive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chat_message_receive"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="9dp"
+            android:fontFamily="@font/kastelov_axiforma_regular"
+            android:text="@string/date_10_30am"
+            android:textColor="@color/black_color"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
