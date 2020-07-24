@@ -45,10 +45,11 @@ public class OngoingOrderActivity extends AppCompatActivity implements View.OnCl
         //setting Customize Toolbar
         bar_text.setText(R.string.ongoing_order);
         setSupportActionBar(toolbar);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         setRecyclerData();
+        hitApi();
+    }
+
+    private void hitApi() {
 
 
     }
@@ -61,6 +62,8 @@ public class OngoingOrderActivity extends AppCompatActivity implements View.OnCl
         test.add(new Test("General Inspection"));
         test.add(new Test("Engine Oil Change"));
 
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         OngoingOrderAdapter adapter = new OngoingOrderAdapter(this, test);
         recyclerView.setAdapter(adapter);
     }

@@ -14,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.qartechnician.R;
 import com.app.qartechnician.adapters.TodayJobAdapter;
 import com.app.qartechnician.models.Test;
+import com.app.qartechnician.models.todays_job.todays_job_request.TodayJobRequest;
+import com.app.qartechnician.models.todays_job.todays_job_response.TodayJobResponse;
+import com.app.qartechnician.retrofit.retrofit_service.APIUtility;
+import com.app.qartechnician.utils.PrefEntities;
+import com.app.qartechnician.utils.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +48,7 @@ public class TodayJobActivity extends AppCompatActivity implements View.OnClickL
 
     private void setData() {
         //setting Customize Toolbar
-        bar_text.setText(R.string.ongoing_order);
+        bar_text.setText(R.string.today_job);
         setSupportActionBar(toolbar);
 
         recyclerView.setHasFixedSize(true);
@@ -52,6 +57,8 @@ public class TodayJobActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void setRecyclerData() {
+
+        hitApiTodayJob();
         List<Test> test = new ArrayList<>();
         test.add(new Test("Engine Oil Change"));
         test.add(new Test("Denting & Painting"));
@@ -61,6 +68,29 @@ public class TodayJobActivity extends AppCompatActivity implements View.OnClickL
 
         TodayJobAdapter adapter = new TodayJobAdapter(this, test);
         recyclerView.setAdapter(adapter);
+    }
+
+
+    private void hitApiTodayJob() {
+
+        TodayJobRequest request = new TodayJobRequest();
+        request.setLoginAs(Preferences.getPreference(this, PrefEntities.LOGIN_AS));
+        new APIUtility().todayJob(this, true, Preferences.getPreference(this, PrefEntities.ACCESS_TOKEN), request, new APIUtility.APIResponseListener<TodayJobResponse>() {
+            @Override
+            public void onReceiveResponse(TodayJobResponse response) {
+
+            }
+
+            @Override
+            public void onStatusFailed(TodayJobResponse response) {
+
+            }
+
+            @Override
+            public void onFailure() {
+
+            }
+        });
     }
 
     @Override

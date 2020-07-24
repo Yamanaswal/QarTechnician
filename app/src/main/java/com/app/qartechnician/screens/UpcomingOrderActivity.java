@@ -85,7 +85,7 @@ public class UpcomingOrderActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch(v.getId()) {
 
             case R.id.back_button:
                 startActivity(new Intent(this, HomeActivity.class));

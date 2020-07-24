@@ -1,31 +1,36 @@
 package com.app.qartechnician.screens;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.app.qartechnician.R;
-import com.app.qartechnician.adapters.OngoingOrderAdapter;
-import com.app.qartechnician.adapters.WalletHistoryAdapter;
-import com.app.qartechnician.models.Test;
-import com.app.qartechnician.utils.Constants;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.app.qartechnician.adapters.WalletAdapter;
+import com.app.qartechnician.models.garage_money.garage_money_response.GarageMoneyResponse;
+import com.app.qartechnician.models.garage_money_admin.garage_money_admin_request.GarageMoneyAdminRequest;
+import com.app.qartechnician.models.garage_money_admin.garage_money_admin_response.GarageMoneyAdminResponse;
+import com.app.qartechnician.retrofit.retrofit_service.APIUtility;
+import com.app.qartechnician.utils.CommonUtils;
+import com.app.qartechnician.utils.PrefEntities;
+import com.app.qartechnician.utils.Preferences;
 
 public class QarWalletActivity extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar toolbar;
-    TextView bar_text;
+    TextView bar_text, total_money;
     ImageView back_button;
     RecyclerView recyclerView;
+    Button money_withdraw;
+    GarageMoneyAdminRequest request = new GarageMoneyAdminRequest();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,9 @@ public class QarWalletActivity extends AppCompatActivity implements View.OnClick
         back_button = toolbar.findViewById(R.id.back_button);
         back_button.setOnClickListener(this);
         recyclerView = findViewById(R.id.recycler_view);
+        total_money = findViewById(R.id.total_money);
+        money_withdraw = findViewById(R.id.money_withdraw);
+        money_withdraw.setOnClickListener(this);
     }
 
     private void setData() {
@@ -55,12 +63,32 @@ public class QarWalletActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void setRecyclerData() {
-        List<Test> test = new ArrayList<>();
-        test.add(new Test("Engine Oil Change"));
-        test.add(new Test("Denting & Painting"));
 
-        WalletHistoryAdapter adapter = new WalletHistoryAdapter(this, test);
-        recyclerView.setAdapter(adapter);
+        new APIUtility().garageMoney(this, true, Preferences.getPreference(this, PrefEntities.ACCESS_TOKEN), new APIUtility.APIResponseListener<GarageMoneyResponse>() {
+            @Override
+            public void onReceiveResponse(GarageMoneyResponse response) {
+
+                if (response.getCode() == 1) {
+                    //Total Earning
+                    total_money.setText("" + (int) response.getData().getTotalEarnings());
+                    request.setWalletId(response.getData().getList().get(0).getWallet().get_id());
+
+                    WalletAdapter adapter = new WalletAdapter(QarWalletActivity.this, response.getData().getList());
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onStatusFailed(GarageMoneyResponse response) {
+                Toast.makeText(QarWalletActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure() {
+                CommonUtils.alert(QarWalletActivity.this, getString(R.string.somethingwentwrong));
+            }
+        });
+
     }
 
 
@@ -72,6 +100,36 @@ public class QarWalletActivity extends AppCompatActivity implements View.OnClick
                 startActivity(intent);
                 finish();
                 break;
+
+            case R.id.money_withdraw:
+                hitApiWithdrawMoney();
+                break;
         }
+    }
+
+    private void hitApiWithdrawMoney() {
+
+        new APIUtility().garageMoneyAdmin(this, true,
+                Preferences.getPreference(this, PrefEntities.ACCESS_TOKEN), request, new APIUtility.APIResponseListener<GarageMoneyAdminResponse>() {
+                    @Override
+                    public void onReceiveResponse(GarageMoneyAdminResponse response) {
+
+                        if (response.getCode() == 1) {
+                            Toast.makeText(QarWalletActivity.this, "" + response.getMessage(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(QarWalletActivity.this, "Server Error: " + response.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onStatusFailed(GarageMoneyAdminResponse response) {
+                        Toast.makeText(QarWalletActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        CommonUtils.alert(QarWalletActivity.this, getString(R.string.somethingwentwrong));
+                    }
+                });
     }
 }

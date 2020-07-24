@@ -59,7 +59,7 @@
             android:textColor="@color/black_dot_color" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/booked_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/person_name"
@@ -74,7 +74,7 @@
             android:id="@+id/view_line_two"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/date"
+            android:layout_below="@+id/booked_date"
             android:layout_marginTop="23.5dp"
             android:background="@color/view_line_color" />
 

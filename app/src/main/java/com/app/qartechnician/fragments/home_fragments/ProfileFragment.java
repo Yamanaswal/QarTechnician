@@ -36,11 +36,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private View view;
-    private RelativeLayout main_layout,manage_date, tech_management, change_password, about_us, privacy_policy, terms_condition, change_language, notification, log_out_button;
-    private ImageView edit_icon;
+    private RelativeLayout main_layout, manage_date, tech_management, change_password, about_us, privacy_policy, terms_condition, change_language, notification, log_out_button;
+    private RelativeLayout edit_icon;
     private CircleImageView profile_image;
-    TextView profile_name,email_id,phone_number,wallet_amount;
+    TextView profile_name, email_id, phone_number, wallet_amount;
     SwitchCompat notification_switch;
+    private String email, address, mobile, profile_pic, name, country, city, state;
+    private double longitude, latitude;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -94,10 +96,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         new APIUtility().profileDetails(getContext(), true,Preferences.getPreference(getContext(),PrefEntities.ACCESS_TOKEN),Preferences.getPreference(getContext(),PrefEntities.LOGIN_AS), new APIUtility.APIResponseListener<ProfileDetailsResponse>() {
             @Override
             public void onReceiveResponse(ProfileDetailsResponse response) {
-                if(response.getCode() == 1){
+                if (response != null && response.getCode() == 1) {
                     setData(response);
-                }else {
-                    Toast.makeText(getContext(), ""+ R.string.somethingwentwrong, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "" + R.string.somethingwentwrong, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -114,14 +116,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setData(ProfileDetailsResponse response) {
-        if(isAdded() && response.getData().getUser().getAvatar() !=null && !response.getData().getUser().getAvatar().isEmpty()) {
-            Glide.with(Objects.requireNonNull(getContext())).load(response.getData().getUser().getAvatar()).into(profile_image);
+        if (isAdded() && response.getData().getUser().getAvatar() != null && !response.getData().getUser().getAvatar().isEmpty()) {
+            Glide.with(Objects.requireNonNull(getContext())).load(response.getData().getUser().getAvatar()).placeholder(R.drawable.profile_image).into(profile_image);
+            profile_pic = response.getData().getUser().getAvatar();
         }
 
         profile_name.setText(response.getData().getUser().getName());
         email_id.setText(response.getData().getUser().getEmail());
         phone_number.setText(response.getData().getUser().getMobileNo());
-        wallet_amount.setText(response.getData().getWallet() + " Qar");
+        wallet_amount.setText((int) response.getData().getWallet() + " Qar");
+        email = response.getData().getUser().getEmail();
+        name = response.getData().getUser().getName();
+        mobile = response.getData().getUser().getMobileNo();
+        address = response.getData().getUser().getAddress().getPostalAddress();
+        if (response.getData().getUser().getAddress() != null) {
+            country = response.getData().getUser().getAddress().getCountry();
+            city = response.getData().getUser().getAddress().getCity();
+            state = response.getData().getUser().getAddress().getState();
+            longitude = response.getData().getUser().getAddress().getCoordinates().get(0);
+            longitude = response.getData().getUser().getAddress().getCoordinates().get(1);
+        }
+
 
         notification_switch.setChecked(response.getData().getUser().isNotification());
 
@@ -166,13 +181,24 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.edit_icon:
-                startActivity(new Intent(getContext(), EditProfileActivity.class));
+                Intent intent = new Intent(getContext(), EditProfileActivity.class);
+                intent.putExtra("email", email);
+                intent.putExtra("name", name);
+                intent.putExtra("mobile", mobile);
+                intent.putExtra("address", address);
+                intent.putExtra("profile_pic", profile_pic);
+                intent.putExtra("country", country);
+                intent.putExtra("city", city);
+                intent.putExtra("state", state);
+                intent.putExtra("longitude", longitude);
+                intent.putExtra("latitude", latitude);
+                startActivity(intent);
                 getActivity().finish();
                 break;
 
             case R.id.log_out_button:
                 Preferences.removePreference(getContext(), PrefEntities.ACCESS_TOKEN);
-                Preferences.removePreference(getContext(),PrefEntities.USER);
+                Preferences.removePreference(getContext(), PrefEntities.USER);
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();
                 break;

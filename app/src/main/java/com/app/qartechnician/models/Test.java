@@ -1,6 +1,7 @@
 package com.app.qartechnician.models;
 
 public class Test {
+
     private String service_name;
 
     public String getService_name() {

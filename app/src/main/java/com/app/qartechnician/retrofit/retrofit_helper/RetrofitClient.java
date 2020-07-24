@@ -50,8 +50,7 @@ public class RetrofitClient {
                             request.addHeader(key, value);
                         }
                         request.method(chain.request().method(), chain.request().body());
-
-                      request.addHeader("Content-Type", "application/json");
+                        request.addHeader("Content-Type", "application/json");
                         request.build();
 
                         return chain.proceed(request.build());

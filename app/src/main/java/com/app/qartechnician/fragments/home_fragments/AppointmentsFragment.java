@@ -1,6 +1,5 @@
 package com.app.qartechnician.fragments.home_fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +16,12 @@ import com.app.qartechnician.R;
 import com.app.qartechnician.adapters.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class AppointmentsFragment extends Fragment implements TabLayout.OnTabSelectedListener,View.OnClickListener {
+public class AppointmentsFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private TabLayout tab_layout;
     private ViewPager view_pager;
+    ViewPagerAdapter viewPagerAdapter;
 
     private Toolbar toolbar;
     private TextView bar_text;
@@ -56,40 +53,45 @@ public class AppointmentsFragment extends Fragment implements TabLayout.OnTabSel
     private void setData() {
         //setting Customize Toolbar
         bar_text.setText(R.string.my_appointments);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
-        setTabLayout();
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        if (isAdded()) {
+            setTabLayout();
+        }
     }
 
     private void setTabLayout() {
-        if (getFragmentManager() != null) {
-            ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getFragmentManager(), tab_layout.getTabCount());
-            view_pager.setAdapter(viewPagerAdapter);
-        }
-
-        //listener to Tab Layout
-        tab_layout.addOnTabSelectedListener(this);
-        view_pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab_layout));
-    }
+        viewPagerAdapter = new ViewPagerAdapter(getFragmentManager());
+        tab_layout.setupWithViewPager(view_pager);
+        view_pager.setAdapter(viewPagerAdapter);
 
 
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
+        view_pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-    }
+            }
 
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
+            @Override
+            public void onPageSelected(int position) {
 
-    }
+            }
 
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
+
+
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back_button:
+                break;
+        }
 
     }
 }

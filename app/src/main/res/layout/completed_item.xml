@@ -34,7 +34,7 @@
             android:fontFamily="@font/kastelov_axiforma_regular"
             android:text="@string/date_on_card"
             android:textColor="@color/black_dot_color"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <View
             android:id="@+id/view_line_one"
@@ -56,90 +56,142 @@
             android:textColor="@color/black_color"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/person_name"
+        <RelativeLayout
+            android:id="@+id/person_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/car_service"
-            android:layout_marginStart="9.75dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/kastelov_axiforma_medium"
-            android:text="@string/john_doe"
-            android:textColor="@color/black_dot_color"
-            android:textSize="14sp" />
+            android:layout_marginStart="9.75dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/dot_image"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_below="@+id/car_service"
-            android:layout_marginStart="12.25dp"
-            android:layout_marginTop="14dp"
-            android:layout_toEndOf="@+id/person_name"
-            android:src="@color/black_dot_color" />
+            <TextView
+                android:id="@+id/person_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:text="@string/john_doe"
+                android:textColor="@color/black_dot_color"
+                android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/car_service"
-            android:layout_marginStart="12.25dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/dot_image"
-            android:fontFamily="@font/kastelov_axiforma_medium"
-            android:text="@string/sedan"
-            android:textColor="@color/black_dot_color"
-            android:textSize="14sp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/dot_image"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12.25dp"
+                android:layout_toEndOf="@+id/person_name"
+                android:src="@color/black_dot_color" />
+
+            <TextView
+                android:id="@+id/car_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12.25dp"
+                android:layout_toEndOf="@id/dot_image"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:text="@string/sedan"
+                android:textColor="@color/black_dot_color"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/vehicle_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/person_name"
+            android:layout_below="@+id/person_frame"
             android:layout_marginStart="9.75dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/kastelov_axiforma_medium"
             android:text="@string/vehicle_no_qatar_256356"
             android:textColor="@color/black_dot_color" />
 
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicle_no"
+            android:layout_marginStart="9.75dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/kastelov_axiforma_semibold"
+            android:text="@string/_410_qar"
+            android:textColor="@color/orange_colour" />
+
         <View
             android:id="@+id/view_line_two"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/vehicle_no"
-            android:layout_marginTop="11.5dp"
+            android:layout_below="@+id/price"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/silver_dark" />
 
         <TextView
-            android:id="@+id/view_details"
+            android:id="@+id/garage_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view_line_two"
-            android:layout_centerHorizontal="true"
+            android:layout_marginStart="9.75dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/kastelov_axiforma_semibold"
+            android:text="@string/abc_garage"
+            android:textColor="@color/black_color"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/garage_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/garage_name"
+            android:layout_marginStart="9.75dp"
+            android:fontFamily="@font/kastelov_axiforma_medium"
+            android:text="@string/sector_63_noida"
+            android:textColor="@color/black_dot_color"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/view_line_three"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/garage_address"
+            android:layout_marginTop="12dp"
+            android:background="@color/silver_dark" />
+
+        <TextView
+            android:id="@+id/view_job_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line_three"
+            android:text="@string/view_job_details"
             android:layout_marginTop="13.5dp"
             android:layout_marginBottom="12dp"
             android:fontFamily="@font/kastelov_axiforma_medium"
-            android:text="View Details"
+            android:textAlignment="center"
             android:textColor="@color/orange_colour"
             android:textSize="14sp" />
 
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+        <ImageView
+            android:id="@+id/car_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/view_line_one"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="15.5dp"
-            android:layout_marginEnd="10dp"
-            android:src="@color/orange_colour" />
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/circle_background_orange" />
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="22dp"
-            android:layout_below="@+id/view_line_one"
+            android:id="@+id/car_image_two"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@+id/view_line_three"
+            android:layout_below="@+id/view_line_two"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="23dp"
-            android:src="@mipmap/noun_sedan" />
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/circle_background_orange" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

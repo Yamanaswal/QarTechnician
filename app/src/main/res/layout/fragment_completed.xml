@@ -7,7 +7,7 @@
     tools:context=".fragments.appointments_fragments.CompletedFragment">
 
     <RelativeLayout
-        android:id="@+id/relative_one"
+        android:id="@+id/quotations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -102,7 +102,7 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/relative_one"
+        android:layout_below="@+id/quotations"
         android:clipToPadding="false"
         android:paddingBottom="10dp" />
 

@@ -16,6 +16,7 @@ public class APIServiceGenerator {
         BASE_URL = url;
     }
 
+
     public static void addHeader(String key, String value){
         headers.put(key, value);
     }

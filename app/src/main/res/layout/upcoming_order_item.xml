@@ -53,6 +53,7 @@
             android:id="@+id/car_service_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
             android:layout_below="@+id/view_line1"
             android:layout_alignParentStart="true"
             android:layout_marginStart="9.75dp"
@@ -105,28 +106,16 @@
             android:text="@string/vehicle_no_qatar_256356"
             android:textSize="14sp" />
 
-        <!--  orange circle image  -->
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_line1"
-            android:layout_alignParentEnd="true">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_centerHorizontal="true"
-                android:src="@color/orange_colour" />
-
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="19dp"
-                android:layout_marginEnd="26dp"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/noun_sedan" />
+                android:layout_width="70dp"
+                android:id="@+id/circle_image"
+                android:layout_marginEnd="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/view_line1"
+                android:layout_height="70dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/circle_background_orange" />
 
-        </RelativeLayout>
 
     </RelativeLayout>
 

@@ -97,7 +97,7 @@
             android:textColor="@color/black_dot_color" />
 
         <RelativeLayout
-            android:id="@+id/relative_one"
+            android:id="@+id/quotations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/car_colour">
@@ -147,7 +147,7 @@
         <RelativeLayout
             android:id="@+id/relative_two"
             android:layout_width="match_parent"
-            android:layout_below="@+id/relative_one"
+            android:layout_below="@+id/quotations"
             android:layout_height="wrap_content">
 
             <TextView

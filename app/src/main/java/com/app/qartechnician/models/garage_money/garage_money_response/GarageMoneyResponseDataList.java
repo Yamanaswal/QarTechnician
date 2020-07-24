@@ -2,6 +2,9 @@ package com.app.qartechnician.models.garage_money.garage_money_response;
 
 public class GarageMoneyResponseDataList {
 
+    public static final int WALLET_DATE = 1;
+    public static final int WALLET_ITEM = 2;
+
     private GarageMoneyResponseDataListWallet wallet;
     private GarageMoneyResponseDataListBooking booking;
 

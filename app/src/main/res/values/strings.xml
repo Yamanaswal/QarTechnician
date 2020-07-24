@@ -110,14 +110,12 @@
     <string name="additional_feedback">Additional Feedback</string>
     <string name="completed">Completed</string>
     <string name="cancelled">Cancelled</string>
-    <string name="cancelled_on">Cancelled on</string>
     <string name="reason_for_cancellation">Reason for Cancellation</string>
     <string name="lorem_demo_text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptuairmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita</string>
     <string name="to">To</string>
     <string name="from_date">From Date</string>
     <string name="sedan">Sedan</string>
     <string name="view_quotation">View Quotation</string>
-    <string name="order_status">Order Status</string>
     <string name="recent_activity">Recent Activity</string>
     <string name="service_in_progress">Service in Progress</string>
     <string name="time_5_31pm">5:31PM</string>
@@ -142,6 +140,20 @@
     <string name="date_10_30am">10:30AM</string>
     <string name="i_am_fine_what_about_you">I am fine, What about you?</string>
     <string name="chat_admin">Chat with Admin</string>
+    <string name="appoint_no_dash">"Appoint.No- "</string>
+    <string name="today_job">Today\'s job</string>
+    <string name="view_job_details">View Job Details</string>
+    <string name="sector_63_noida">Sector 63,Noida</string>
+    <string name="_410_qar">410 Qar</string>
+    <string name="car_details">Car Details</string>
+    <string name="battery_size">Battery Size</string>
+    <string name="year_of_manufacture">Year of Manufacture</string>
+    <string name="large">Large</string>
+    <string name="price_summary">Price Summary</string>
+    <string name="order_status">Order Status</string>
+    <string name="create_report">Create Report</string>
+    <string name="allow_auto_detection">Allow Auto Detection</string>
+    <string name="search_location">Search Location</string>
 
     <!--    Technician Management Strings -->
     <string-array name="job_update">
@@ -154,7 +166,6 @@
         <item>Unavailable</item>
         <item>Available</item>
     </string-array>
-
 
 
 </resources>

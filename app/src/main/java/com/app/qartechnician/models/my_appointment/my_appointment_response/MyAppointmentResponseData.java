@@ -11,8 +11,9 @@ public class MyAppointmentResponseData {
     private String bookingToTime;
     private String modeOfPayment;
     private String createdAt;
-    private int orderStatus;
+    private List<MyAppointmentResponseDataOrderStatus> orderStatus;
     private double totalFee;
+    private MyAppointmentResponseDataBooking bookingStatus;
     private String userId;
     private String fullName;
     private String mobileNo;
@@ -22,7 +23,7 @@ public class MyAppointmentResponseData {
     private String bookingTime;
     private int time;
     private List<String> serviceName;
-    private MyAppointmentResponseDataGarage garage;
+    private String reason;
 
     public String get_id() {
         return _id;
@@ -80,11 +81,11 @@ public class MyAppointmentResponseData {
         this.createdAt = createdAt;
     }
 
-    public int getOrderStatus() {
+    public List<MyAppointmentResponseDataOrderStatus> getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(int orderStatus) {
+    public void setOrderStatus(List<MyAppointmentResponseDataOrderStatus> orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -94,6 +95,14 @@ public class MyAppointmentResponseData {
 
     public void setTotalFee(double totalFee) {
         this.totalFee = totalFee;
+    }
+
+    public MyAppointmentResponseDataBooking getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public void setBookingStatus(MyAppointmentResponseDataBooking bookingStatus) {
+        this.bookingStatus = bookingStatus;
     }
 
     public String getUserId() {
@@ -168,11 +177,11 @@ public class MyAppointmentResponseData {
         this.serviceName = serviceName;
     }
 
-    public MyAppointmentResponseDataGarage getGarage() {
-        return garage;
+    public String getReason() {
+        return reason;
     }
 
-    public void setGarage(MyAppointmentResponseDataGarage garage) {
-        this.garage = garage;
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

@@ -1,28 +1,26 @@
 package com.app.qartechnician.adapters;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.app.qartechnician.fragments.appointments_fragments.CancelledFragment;
 import com.app.qartechnician.fragments.appointments_fragments.CompletedFragment;
 import com.app.qartechnician.fragments.appointments_fragments.OnGoingFragment;
 
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    private int numOfTabs;
-
-    public ViewPagerAdapter(@NonNull FragmentManager fm, int numOfTabs) {
-        super(fm, numOfTabs);
-        this.numOfTabs = numOfTabs;
+    public ViewPagerAdapter(@NonNull FragmentManager fm) {
+        super(fm);
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
+        Fragment fragment;
         switch (position) {
             case 0:
                 fragment = new OnGoingFragment();
@@ -33,12 +31,35 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 2:
                 fragment = new CancelledFragment();
                 break;
+
+            default:
+                fragment = null;
+                break;
         }
-         return fragment;
+        return fragment;
     }
 
     @Override
     public int getCount() {
-        return numOfTabs;
+        return 3;
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+
+        switch (position) {
+            case 0:
+                return "OnGoing";
+
+            case 1:
+                return "Completed";
+
+            case 2:
+                return "Cancelled";
+
+            default:
+                return null;
+        }
     }
 }

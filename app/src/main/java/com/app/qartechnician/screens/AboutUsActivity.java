@@ -9,9 +9,15 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.qartechnician.R;
+import com.app.qartechnician.models.terms_privacy_about_us.terms_privacy_about_response.TermsPrivacyAboutUsResponse;
+import com.app.qartechnician.retrofit.retrofit_service.APIUtility;
+import com.app.qartechnician.utils.CommonUtils;
 import com.app.qartechnician.utils.Constants;
+import com.app.qartechnician.utils.PrefEntities;
+import com.app.qartechnician.utils.Preferences;
 
 public class AboutUsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,7 +47,28 @@ public class AboutUsActivity extends AppCompatActivity implements View.OnClickLi
         bar_text.setText(R.string.about_us);
         setSupportActionBar(toolbar);
 
-        webView.loadUrl("https://ripenapps.com/");
+        //setting WebView
+        new APIUtility().termsPrivacyAboutUs(this,
+                true,
+                Preferences.getPreference(this, PrefEntities.ACCESS_TOKEN),"aboutus",
+                Preferences.getPreference(this, PrefEntities.LOGIN_AS),
+                new APIUtility.APIResponseListener<TermsPrivacyAboutUsResponse>() {
+                    @Override
+                    public void onReceiveResponse(TermsPrivacyAboutUsResponse response) {
+                        webView.getSettings().getJavaScriptEnabled();
+                        webView.loadDataWithBaseURL("", response.getData().getDescription(), "text/html", "UTF-8", "");
+                    }
+
+                    @Override
+                    public void onStatusFailed(TermsPrivacyAboutUsResponse response) {
+                        Toast.makeText(AboutUsActivity.this, response.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        CommonUtils.alert(AboutUsActivity.this, getString(R.string.somethingwentwrong));
+                    }
+                });
     }
 
 

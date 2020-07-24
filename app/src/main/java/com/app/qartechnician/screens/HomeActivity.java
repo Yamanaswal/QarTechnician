@@ -11,7 +11,6 @@ import com.app.qartechnician.fragments.home_fragments.AppointmentsFragment;
 import com.app.qartechnician.fragments.home_fragments.ChatFragment;
 import com.app.qartechnician.fragments.home_fragments.HomePageFragment;
 import com.app.qartechnician.fragments.home_fragments.ProfileFragment;
-import com.app.qartechnician.fragments.home_fragments.TransactionHistoryFragment;
 import com.app.qartechnician.utils.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
                         new ProfileFragment()).commit();
             }
         }
+
 
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

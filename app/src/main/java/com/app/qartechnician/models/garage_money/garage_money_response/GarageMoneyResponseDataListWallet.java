@@ -9,6 +9,15 @@ public class GarageMoneyResponseDataListWallet {
     private String _id;
     private String createdAt;
     private double currentAmount;
+    private String withdrawalRequest;
+
+    public String getWithdrawalRequest() {
+        return withdrawalRequest;
+    }
+
+    public void setWithdrawalRequest(String withdrawalRequest) {
+        this.withdrawalRequest = withdrawalRequest;
+    }
 
     public double getAmount() {
         return amount;

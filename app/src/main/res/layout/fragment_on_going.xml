@@ -7,7 +7,7 @@
     tools:context=".fragments.appointments_fragments.OnGoingFragment">
 
     <RelativeLayout
-        android:id="@+id/relative_one"
+        android:id="@+id/quotations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -22,6 +22,7 @@
             app:cardElevation="2dp">
 
             <RelativeLayout
+                android:id="@+id/date_picker_start"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -71,6 +72,7 @@
             app:cardElevation="2dp">
 
             <RelativeLayout
+                android:id="@+id/date_picker_end"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -102,6 +104,6 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/relative_one" />
+        android:layout_below="@+id/quotations" />
 
 </RelativeLayout>

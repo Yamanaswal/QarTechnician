@@ -34,7 +34,7 @@
             android:fontFamily="@font/kastelov_axiforma_regular"
             android:text="@string/date_on_card"
             android:textColor="@color/black_dot_color"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <View
             android:id="@+id/view_line_one"
@@ -50,51 +50,59 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/view_line_one"
             android:layout_marginStart="9.75dp"
-            android:layout_marginTop="13.5dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/kastelov_axiforma_semibold"
             android:text="@string/engine_oil_change"
+            android:lineSpacingExtra="5dp"
             android:textColor="@color/black_color"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/person_name"
+        <RelativeLayout
+            android:id="@+id/person_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/car_service"
-            android:layout_marginStart="9.75dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/kastelov_axiforma_medium"
-            android:text="@string/john_doe"
-            android:textColor="@color/black_dot_color"
-            android:textSize="14sp" />
+            android:layout_marginStart="9.75dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/dot_image"
-            android:layout_width="6dp"
-            android:layout_height="6dp"
-            android:layout_below="@+id/car_service"
-            android:layout_marginStart="12.25dp"
-            android:layout_marginTop="14dp"
-            android:layout_toEndOf="@+id/person_name"
-            android:src="@color/black_dot_color" />
+            <TextView
+                android:id="@+id/person_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:text="@string/john_doe"
+                android:textColor="@color/black_dot_color"
+                android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/car_service"
-            android:layout_marginStart="12.25dp"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/dot_image"
-            android:fontFamily="@font/kastelov_axiforma_medium"
-            android:text="@string/sedan"
-            android:textColor="@color/black_dot_color"
-            android:textSize="14sp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/dot_image"
+                android:layout_width="6dp"
+                android:layout_height="6dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12.25dp"
+                android:layout_toEndOf="@+id/person_name"
+                android:src="@color/black_dot_color" />
+
+            <TextView
+                android:id="@+id/car_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12.25dp"
+                android:layout_toEndOf="@id/dot_image"
+                android:fontFamily="@font/kastelov_axiforma_medium"
+                android:text="@string/sedan"
+                android:textColor="@color/black_dot_color"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/vehicle_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/person_name"
+            android:layout_below="@+id/person_frame"
             android:layout_marginStart="9.75dp"
             android:textColor="@color/black_dot_color"
             android:fontFamily="@font/kastelov_axiforma_medium"
@@ -102,11 +110,12 @@
             android:text="@string/vehicle_no_qatar_256356" />
 
         <RelativeLayout
-            android:id="@+id/relative_one"
+            android:id="@+id/quotations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/vehicle_no"
             android:layout_marginStart="29.75dp"
+            android:layout_alignParentStart="true"
             android:layout_marginTop="19dp">
 
             <TextView
@@ -115,12 +124,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/kastelov_axiforma_medium"
-                android:text="@string/cancelled_on"
+                android:text="@string/booked_on"
                 android:textColor="@color/black_dot_color"
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/booked_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/cancel_text"
@@ -148,6 +157,7 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/kastelov_axiforma_medium"
                 android:text="@string/payment_method"
+                android:textAlignment="center"
                 android:textColor="@color/black_dot_color"
                 android:textSize="12sp" />
 
@@ -158,6 +168,7 @@
                 android:layout_below="@+id/payment_text"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:textAlignment="center"
                 android:fontFamily="@font/kastelov_axiforma_medium"
                 android:text="@string/online"
                 android:textColor="@color/black_color"
@@ -169,7 +180,7 @@
             android:id="@+id/view_line_two"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@+id/relative_one"
+            android:layout_below="@+id/quotations"
             android:layout_marginTop="11.5dp"
             android:background="@color/silver_dark" />
 
@@ -198,23 +209,16 @@
             android:text="@string/lorem_demo_text"
             android:textSize="14sp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_below="@+id/view_line_one"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="15.5dp"
-            android:layout_marginEnd="10dp"
-            android:src="@color/orange_colour" />
 
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="22dp"
+            android:id="@+id/car_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_below="@+id/view_line_one"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="23dp"
-            android:src="@mipmap/noun_sedan" />
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/circle_background_orange" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

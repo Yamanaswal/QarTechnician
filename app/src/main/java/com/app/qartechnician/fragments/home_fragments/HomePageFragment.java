@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +21,6 @@ import com.app.qartechnician.models.Test;
 import com.app.qartechnician.models.dashboard_data.dashboard_data_request.DashboardDataRequest;
 import com.app.qartechnician.models.dashboard_data.dashboard_data_response.DashboardDataResponse;
 import com.app.qartechnician.retrofit.retrofit_service.APIUtility;
-import com.app.qartechnician.screens.HomeActivity;
-import com.app.qartechnician.screens.LoginActivity;
 import com.app.qartechnician.screens.NotificationsActivity;
 import com.app.qartechnician.screens.OngoingOrderActivity;
 import com.app.qartechnician.screens.QarWalletActivity;
@@ -43,9 +42,10 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private ImageView wallet, notification;
     private View view;
     private RecyclerView recyclerView;
-    private int upcommingAppointments,ongoingAppointments,todayAppointments,notifications;
+    private int upcommingAppointments, ongoingAppointments, todayAppointments, notifications;
     private double wallet_amount;
-    private TextView ongoing_no_text,upcoming_no_text;
+    private TextView ongoing_no_text, upcoming_no_text;
+    ScrollView main_layout;
 
 
     public HomePageFragment() {
@@ -58,6 +58,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home_page, container, false);
         setIds();
+        main_layout.setVisibility(View.GONE);
         setData();
         return view;
     }
@@ -71,6 +72,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         notification = view.findViewById(R.id.notification);
         upcoming_no_text = view.findViewById(R.id.upcoming_no_text);
         ongoing_no_text = view.findViewById(R.id.ongoing_no_text);
+        main_layout = view.findViewById(R.id.main_layout);
 
         wallet.setOnClickListener(this);
         upcoming_order.setOnClickListener(this);
@@ -80,9 +82,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setData() {
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        setRecyclerData();
         hitApiDashboard();
     }
 
@@ -103,6 +102,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     ongoing_no_text.setText(String.valueOf(ongoingAppointments));
                     upcoming_no_text.setText(String.valueOf(upcommingAppointments));
 
+                    setRecyclerData();
+
                 } else {
                     assert response != null;
                     Toast.makeText(getContext(), "Code: " + response.getMessage(), Toast.LENGTH_SHORT).show();
@@ -119,6 +120,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 CommonUtils.alert(getContext(), getString(R.string.somethingwentwrong));
             }
         });
+
+
     }
 
     private void setRecyclerData() {
@@ -126,8 +129,13 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         test.add(new Test("Engine Oil Change"));
         test.add(new Test("Denting & Painting"));
 
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         HomePageAdapter adapter = new HomePageAdapter(getContext(), test);
         recyclerView.setAdapter(adapter);
+
+        //after data set show Main View
+        main_layout.setVisibility(View.VISIBLE);
     }
 
     @Override

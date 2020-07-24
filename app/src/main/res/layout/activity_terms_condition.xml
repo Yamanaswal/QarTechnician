@@ -34,7 +34,6 @@
                 android:id="@+id/terms_conditions_webView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:background="@drawable/cardview_white_background" />
 
         </ScrollView>

@@ -29,7 +29,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
@@ -42,6 +41,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.loader.content.CursorLoader;
 
 import com.app.qartechnician.R;
 
@@ -289,8 +289,7 @@ public class CommonUtils {
         return type;
     }
 
-    public static Bitmap decodeSampledBitmapFromResource(String path,
-                                                         Resources res, int resId, int reqWidth, int reqHeight) {
+    public static Bitmap decodeSampledBitmapFromResource(String path, Resources res, int resId, int reqWidth, int reqHeight) {
 
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -580,46 +579,6 @@ public class CommonUtils {
 
     }
 
-    // public static String getHttpCall(String url) {
-    // String result = "";
-    // try {
-    // RestClient mRestClient = new RestClient(url);
-    // result = mRestClient.execute(RestClient.RequestMethod.GET);
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // }
-    // return result;
-    // }
-
-    /**
-     * Add this code to print out the key hash, and use that KeyHash
-     *
-     * @return
-     */
-    // public static String getFaceBookHashKey(Context Con) {
-    // try {
-    // String str = "";
-    // PackageInfo info = Con.getPackageManager().getPackageInfo(
-    // Con.getPackageName(), PackageManager.GET_SIGNATURES);
-    // for (Signature signature : info.signatures) {
-    // MessageDigest md = MessageDigest.getInstance("SHA");
-    // md.update(signature.toByteArray());
-    //
-    // if (Consts.IS_DEBUG)
-    // Log.e("KeyHash:",
-    // Base64.encodeToString(md.digest(), Base64.DEFAULT));
-    //
-    // str = Base64.encodeToString(md.digest(), Base64.DEFAULT);
-    // return str;
-    // }
-    // } catch (NameNotFoundException e) {
-    // e.printStackTrace();
-    //
-    // } catch (NoSuchAlgorithmException e) {
-    // e.printStackTrace();
-    // }
-    // return null;
-    // }
     public static void displayNetworkAlert(final Context context, final boolean isFinish) {
 
         if (isShowNetworkAlert) {
@@ -1076,32 +1035,6 @@ public class CommonUtils {
         return false;
     }
 
-//	public static boolean idValidUsername(String username){
-//		Pattern pattern;
-//		Matcher matcher;
-//		String USERNAME_PATTERN = "^[a-z0-9A-Z]{3,15}$";
-//		pattern = Pattern.compile(USERNAME_PATTERN);
-//		matcher = pattern.matcher(username);
-//		return matcher.matches();
-//
-//	}
-
-//	public static boolean idValidUsername(String s)
-//	{
-//		Pattern letter = Pattern.compile("[a-zA-z]");
-//		Pattern digit = Pattern.compile("[0-9]");
-//		Matcher hasLetter = letter.matcher(s);
-//		Matcher hasDigit = digit.matcher(s);
-//
-//		if(hasLetter.find() && hasDigit.find())
-//		{
-//			return true;
-//		}
-//		else
-//		{
-//			return false;
-//		}
-//	}
 
     public static String getDateFormate(String timestamp) {
         String date = "";
@@ -1243,11 +1176,6 @@ public class CommonUtils {
         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
     }
 
-//	public static void showSnackBar(View view,String message)
-//	{
-//		Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
-//	}
-
 
     public static void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
         ListAdapter listAdapter = gridView.getAdapter();
@@ -1369,32 +1297,6 @@ public class CommonUtils {
         }
     }
 
-
-    public static String convertTimestampToDate(String timeStamp) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
-        String localTime = sdf.format(new Date(Long.parseLong(timeStamp) * 1000));
-        Date date = new Date();
-        try {
-            date = sdf.parse(localTime);//get local date
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Log.d("DATE : ", date.toString());
-        return "" + sdf.format(date);
-    }
-
-    public static String convertDateToTimestamp(String date) {
-
-        String timestamp[] = date.split("-");
-        Calendar calendar = Calendar.getInstance();
-        calendar.clear();
-        calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
-        calendar.set(Integer.parseInt(timestamp[0]), Integer.parseInt(timestamp[1]) - 1, Integer.parseInt(timestamp[2]));
-        return String.valueOf(calendar.getTimeInMillis() / 1000);
-    }
-
     public static void alert(Context context, String msg) {
 
         new AlertDialog.Builder(context)
@@ -1485,6 +1387,120 @@ public class CommonUtils {
             return;
         }
         context.startActivity(callIntent);
+    }
+
+
+    //Date Functions
+    final Calendar calendar = Calendar.getInstance();
+
+    public String dateFormatMonthDateYear(int year, int month, int day) {
+        // Create a Date variable/object with user chosen date
+        calendar.setTimeInMillis(0);
+        calendar.set(year, month, day, 0, 0, 0);
+        Date chosenDate = calendar.getTime();
+
+        // Format the date using style medium and US locale
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.US);
+        return dateFormat.format(chosenDate);
+    }
+
+    public String dateFormatDateMonthYear(int year, int month, int day) {
+        // Create a Date variable/object with user chosen date
+        calendar.setTimeInMillis(0);
+        calendar.set(year, month, day, 0, 0, 0);
+        Date chosenDate = calendar.getTime();
+
+        // Format the date using style medium and US locale
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
+        return dateFormat.format(chosenDate);
+    }
+
+    public String dateFormatMonthDateYearLong(int year, int month, int day) {
+        // Create a Date variable/object with user chosen date
+        calendar.setTimeInMillis(0);
+        calendar.set(year, month, day, 0, 0, 0);
+        Date chosenDate = calendar.getTime();
+
+        // Format the date using style medium and US locale
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
+        return dateFormat.format(chosenDate);
+    }
+
+    public String dateFormatMonthDateYearShort(int year, int month, int day) {
+        // Create a Date variable/object with user chosen date
+        calendar.setTimeInMillis(0);
+        calendar.set(year, month, day, 0, 0, 0);
+        Date chosenDate = calendar.getTime();
+
+        // Format the date using style medium and US locale
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
+        return dateFormat.format(chosenDate);
+    }
+
+    public String dateFormatDayMonthYearFull(int year, int month, int day) {
+        // Create a Date variable/object with user chosen date
+        calendar.setTimeInMillis(0);
+        calendar.set(year, month, day, 0, 0, 0);
+        Date chosenDate = calendar.getTime();
+
+        // Format the date using style medium and US locale
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
+        return dateFormat.format(chosenDate);
+    }
+
+    public static String convertTimeStampToDate(String date) {
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy");
+        Date dateTimeStamp = null;
+
+        try {
+            dateTimeStamp = inputFormat.parse(date);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+        String formattedDate = null;
+        if (dateTimeStamp != null) {
+            formattedDate = outputFormat.format(dateTimeStamp);
+        }
+        System.out.println(formattedDate); // prints 10-04-2018
+
+        return formattedDate;
+    }
+
+
+    public static String convertTimeStampToTime(String date) {
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm a");
+        Date dateTimeStamp = null;
+
+        try {
+            dateTimeStamp = inputFormat.parse(date);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+        String formattedDate = null;
+        if (dateTimeStamp != null) {
+            formattedDate = outputFormat.format(dateTimeStamp);
+        }
+        System.out.println(formattedDate); // prints 10-04-2018
+
+        return formattedDate;
+
+    }
+
+    public static String getRealPathFromURI(Uri uri,Context context) {
+        String[] project = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(context, uri, project, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
     }
 
 }
