@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.app.qartechnician.R;
 import com.app.qartechnician.adapters.HomePageAdapter;
@@ -33,19 +36,20 @@ import com.app.qartechnician.utils.Preferences;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class HomePageFragment extends Fragment implements View.OnClickListener {
+
+public class HomePageFragment extends Fragment implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private CardView upcoming_order, ongoing_order, today_job;
-    private ImageView wallet, notification;
+    private RelativeLayout wallet;
     private View view;
     private RecyclerView recyclerView;
     private int upcommingAppointments, ongoingAppointments, todayAppointments, notifications;
     private double wallet_amount;
-    private TextView ongoing_no_text, upcoming_no_text;
+    private TextView ongoing_no_text, upcoming_no_text,wallet_count;
     ScrollView main_layout;
+    TextView textCartItemCount;
+    FrameLayout notification;
+    SwipeRefreshLayout pullToRefresh;
 
 
     public HomePageFragment() {
@@ -67,18 +71,22 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
         upcoming_order = view.findViewById(R.id.card_four);
         ongoing_order = view.findViewById(R.id.card_three);
         today_job = view.findViewById(R.id.card_five);
+        notification = view.findViewById(R.id.notification);
         recyclerView = view.findViewById(R.id.recycler_view);
         wallet = view.findViewById(R.id.wallet);
-        notification = view.findViewById(R.id.notification);
         upcoming_no_text = view.findViewById(R.id.upcoming_no_text);
         ongoing_no_text = view.findViewById(R.id.ongoing_no_text);
         main_layout = view.findViewById(R.id.main_layout);
+        textCartItemCount = view.findViewById(R.id.cart_badge);
+        wallet_count = view.findViewById(R.id.wallet_count);
+        pullToRefresh = view.findViewById(R.id.pullToRefresh);
 
         wallet.setOnClickListener(this);
         upcoming_order.setOnClickListener(this);
         ongoing_order.setOnClickListener(this);
         today_job.setOnClickListener(this);
         notification.setOnClickListener(this);
+        pullToRefresh.setOnRefreshListener(this);
     }
 
     private void setData() {
@@ -99,8 +107,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                     notifications = response.getData().getNotification();
                     wallet_amount = response.getData().getWallet();
 
+                    //set to the HomeScreen
                     ongoing_no_text.setText(String.valueOf(ongoingAppointments));
                     upcoming_no_text.setText(String.valueOf(upcommingAppointments));
+                    textCartItemCount.setText(String.valueOf(notifications));
+                    wallet_count.setText(String.valueOf((int)wallet_amount));
 
                     setRecyclerData();
 
@@ -127,7 +138,6 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
     private void setRecyclerData() {
         List<Test> test = new ArrayList<>();
         test.add(new Test("Engine Oil Change"));
-        test.add(new Test("Denting & Painting"));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -136,6 +146,7 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
 
         //after data set show Main View
         main_layout.setVisibility(View.VISIBLE);
+        pullToRefresh.setRefreshing(false);
     }
 
     @Override
@@ -167,4 +178,11 @@ public class HomePageFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    public void onRefresh() {
+        setData();
+    }
+
+
 }

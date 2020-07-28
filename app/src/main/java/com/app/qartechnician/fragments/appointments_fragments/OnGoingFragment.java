@@ -59,10 +59,8 @@ public class OnGoingFragment extends Fragment implements View.OnClickListener {
     }
 
     private void setData() {
-
         hitApi();
         setDatePicker();
-
     }
 
     private void hitApi() {

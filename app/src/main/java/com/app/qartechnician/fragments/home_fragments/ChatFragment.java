@@ -1,10 +1,10 @@
 package com.app.qartechnician.fragments.home_fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,27 +15,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.qartechnician.R;
-import com.app.qartechnician.adapters.ChatAdapter;
-import com.app.qartechnician.models.Test;
+import com.app.qartechnician.adapters.ChatPeopleAdapter;
+import com.app.qartechnician.screens.ChatAdminActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ChatFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private RecyclerView recyclerView;
-    ImageView sent_button;
-    EditText chat_edit_text;
 
     Toolbar toolbar;
     TextView bar_text;
-    ImageView back_button;
+    ImageView help_button;
 
-    private List<Test> test = new ArrayList<>();
 
     public ChatFragment() {
         // Required empty public constructor
@@ -55,45 +46,33 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
 
     private void setIds() {
         recyclerView = view.findViewById(R.id.recycler_view);
-        sent_button = view.findViewById(R.id.sent_button);
-        chat_edit_text = view.findViewById(R.id.chat_edit_text);
-
+        help_button = view.findViewById(R.id.help_button);
         toolbar = view.findViewById(R.id.toolbar);
         bar_text = toolbar.findViewById(R.id.bar_text);
-        back_button = toolbar.findViewById(R.id.back_button);
-        back_button.setOnClickListener(this);
-        sent_button.setOnClickListener(this);
+        help_button.setOnClickListener(this);
     }
 
     private void setData() {
         //setting Customize Toolbar
-        bar_text.setText(R.string.chat_admin);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        bar_text.setText(R.string.chats);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        setRecyclerView();
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-
-            case R.id.back_button:
-                break;
-
-            case R.id.sent_button:
-                String sender_msg = chat_edit_text.getText().toString();
-                setRecyclerView(sender_msg);
-                chat_edit_text.setText("");
+        switch (v.getId()) {
+            case R.id.help_button:
+                startActivity(new Intent(getContext(), ChatAdminActivity.class));
                 break;
         }
     }
 
-    private void setRecyclerView(String sender_msg) {
+    private void setRecyclerView() {
         recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setStackFromEnd(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        test.add(new Test(sender_msg));
-        ChatAdapter adapter = new ChatAdapter(getContext(),test);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ChatPeopleAdapter adapter = new ChatPeopleAdapter();
         recyclerView.setAdapter(adapter);
-
     }
 }

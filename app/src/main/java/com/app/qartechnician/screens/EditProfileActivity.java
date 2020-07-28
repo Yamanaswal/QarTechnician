@@ -1,11 +1,10 @@
 package com.app.qartechnician.screens;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +23,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.app.qartechnician.R;
 import com.app.qartechnician.adapters.EditProfileAdapter;
@@ -45,8 +45,9 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
+public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
 
+    private static final String TAG = "EditProfileActivity";
     Toolbar toolbar;
     TextView bar_text;
     ImageView back_button;
@@ -60,6 +61,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     Button save_button;
     RecyclerView recycler_view;
     List<Bitmap> bitmapList;
+    File fileCoverImage;
+    SwipeRefreshLayout pullToRefresh;
 
 
     @Override
@@ -83,6 +86,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         profile_image = findViewById(R.id.profile_image);
         save_button = findViewById(R.id.save_button);
         recycler_view = findViewById(R.id.recycler_view);
+        pullToRefresh = findViewById(R.id.pullToRefresh);
+
 
         //Listeners
         back_button.setOnClickListener(this);
@@ -90,16 +95,21 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         take_photo.setOnClickListener(this);
         address.setOnClickListener(this);
         profile_image.setOnClickListener(this);
+        pullToRefresh.setOnRefreshListener(this);
     }
 
     private void setData() {
         //setting Customize Toolbar
         bar_text.setText(R.string.edit_profile);
         setSupportActionBar(toolbar);
+        setUserProfile();
+
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+        CommonUtils.requestMultiplePermissions(this, permissions);
 
         bitmapList = new ArrayList<>();
         //Getting User Profile Details
-        setUserProfile();
+
     }
 
     private void setRecyclerView(List<Bitmap> bitmapList) {
@@ -130,6 +140,8 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         if (!user_pic.isEmpty()) {
             Glide.with(this).load(user_pic).placeholder(R.drawable.profile_image).into(profile_image);
         }
+
+        pullToRefresh.setRefreshing(false);
     }
 
     private void hitApiMultiPart() {
@@ -138,6 +150,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
 
+        System.out.println(user_pic);
         //Set Data in Multipart Builder
         builder.addFormDataPart("name", full_name.getText().toString().trim());
         builder.addFormDataPart("mobileNo", phone_number.getText().toString().trim());
@@ -149,14 +162,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         builder.addFormDataPart("city", city);
         builder.addFormDataPart("state", state);
 
-     //   Log.d("PATH:",path.toString());
-        if (path != null && !path.equals("")) {
-            File fileCoverImage = new File(path);
-            builder.addFormDataPart("profileImage", fileCoverImage.getName() + System.currentTimeMillis(), RequestBody.create(MediaType.parse("multipart/form-data"), fileCoverImage));
-        }else {
-            CommonUtils.getBitmapFromPath(user_pic);
-            File fileCoverImage = new File(user_pic);
-            builder.addFormDataPart("profileImage", fileCoverImage.getName() + System.currentTimeMillis(), RequestBody.create(MediaType.parse("multipart/form-data"), fileCoverImage));
+        if (path != null && !path.isEmpty()) {
+            fileCoverImage = new File(path);
+            builder.addFormDataPart("profileImage",
+                    fileCoverImage.getName() + System.currentTimeMillis(),
+                    RequestBody.create(fileCoverImage, MediaType.parse("multipart/form-data")));
+
         }
 
         //Create Multipart Request
@@ -167,6 +178,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onReceiveResponse(ProfileUpdateResponse response) {
                         if( response != null && response.getCode() == 1){
+                            Log.d(TAG, "onReceiveResponse: " + response.getMessage());
                             Intent intent = new Intent(EditProfileActivity.this, HomeActivity.class);
                             intent.putExtra(Constants.BACK_KEY, "back_key");
                             startActivity(intent);
@@ -185,6 +197,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                         CommonUtils.alert(EditProfileActivity.this, getString(R.string.somethingwentwrong));
                     }
                 });
+
 
     }
 
@@ -224,26 +237,29 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 //Take Photo - 0
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
-                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
 
-                        bitmapList.add(selectedImage);
-                        path = CommonUtils.getMimeType(this,data.getData());
+                        Bitmap photo = (Bitmap) data.getExtras().get("data");
+                        profile_image.setImageBitmap(photo);
 
-                        //set Image to ImageView
-                        profile_image.setImageBitmap(selectedImage);
+                        // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+                        Uri tempUri = CommonUtils.getImageUri(getApplicationContext(), photo);
+
+                        // CALL THIS METHOD TO GET THE ACTUAL PATH
+                        path = CommonUtils.getRealPathFromURI(tempUri, this);
+
+                        System.out.println(path);
                     }
                     break;
 
                 //Choose from Gallery - 1
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
-                        Uri selectedImage = data.getData();
+                        Uri uri = data.getData();
 
                         try {
-                            Bitmap bitmap = (MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage));
+                            Bitmap bitmap = (MediaStore.Images.Media.getBitmap(getContentResolver(), uri));
                             profile_image.setImageBitmap(bitmap);
-
-                            path = CommonUtils.getRealPathFromURI(selectedImage,this);
+                            path = CommonUtils.getRealPathFromURI(uri, this);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -252,7 +268,6 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
             }
         }
     }
-
 
     @Override
     public void onClick(View v) {
@@ -283,4 +298,11 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 break;
         }
     }
+
+    @Override
+    public void onRefresh() {
+        setData();
+    }
+
+
 }

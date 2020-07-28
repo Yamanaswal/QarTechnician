@@ -41,10 +41,17 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
-import androidx.loader.content.CursorLoader;
 
 import com.app.qartechnician.R;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,6 +66,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
@@ -659,25 +667,6 @@ public class CommonUtils {
         return BitmapFactory.decodeFile(FilePath, options);
     }
 
-    public static Bitmap getBitmapThumbnailsFromPath(String FilePath) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(FilePath, options);
-        int imageHeight = options.outHeight;
-        int imageWidth = options.outWidth;
-        String imageType = options.outMimeType;
-        if (imageWidth > imageHeight) {
-            options.inSampleSize = calculateInSampleSize(options, 512, 256);// if
-            // landscape
-        } else {
-            options.inSampleSize = calculateInSampleSize(options, 256, 512);// if
-            // portrait
-        }
-        options.inJustDecodeBounds = false;
-        // return BitmapFactory.decodeFile(FilePath, options);
-        return Bitmap.createScaledBitmap(
-                BitmapFactory.decodeFile(FilePath, options), 64, 64, false);
-    }
 
     public static int calculateInSampleSize(BitmapFactory.Options options,
                                             int reqWidth, int reqHeight) {
@@ -1492,15 +1481,71 @@ public class CommonUtils {
 
     }
 
-    public static String getRealPathFromURI(Uri uri,Context context) {
-        String[] project = {MediaStore.Images.Media.DATA};
-        CursorLoader loader = new CursorLoader(context, uri, project, null, null, null);
-        Cursor cursor = loader.loadInBackground();
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String result = cursor.getString(column_index);
-        cursor.close();
-        return result;
+    public static String getRealPathFromURI(Uri uri, Context context) {
+        Cursor cursor = null;
+        try {
+            String[] projection = {MediaStore.Images.Media.DATA};
+            cursor = context.getContentResolver().query(uri, projection, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
+
+    public static Uri getImageUri(Context context, Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
+    }
+
+    public static String getBitmapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    /*
+   Request Permissions - UNCOMMENT To USE it
+    */
+    public static void requestMultiplePermissions(final Context context, String[] permissions) {
+        Dexter.withContext((Activity) context)
+                .withPermissions(permissions)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                        // check if all permissions are granted
+                        if (!report.areAllPermissionsGranted()) {
+                            Toast.makeText(context, "Please allow All Permissions", Toast.LENGTH_LONG).show();
+                            requestMultiplePermissions(context,permissions);
+                         }
+
+
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).withErrorListener(new PermissionRequestErrorListener() {
+            @Override
+            public void onError(DexterError error) {
+                Toast.makeText(context.getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+            }
+        }).onSameThread().check();
+    }
+
 
 }

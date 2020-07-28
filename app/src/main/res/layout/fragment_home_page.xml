@@ -40,23 +40,49 @@
                 android:textColor="@color/black_color"
                 android:textSize="24sp" />
 
-            <ImageView
+            <RelativeLayout
                 android:id="@+id/wallet"
-                android:layout_width="25.4dp"
-                android:layout_height="25.4dp"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="17dp"
-                android:src="@mipmap/wallet" />
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ImageView
+                <ImageView
+                    android:layout_width="25.4dp"
+                    android:layout_centerInParent="true"
+                    android:layout_height="25.4dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@mipmap/wallet" />
+
+                <TextView
+                    android:id="@+id/wallet_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/cardview_border_background"
+                    android:paddingStart="6dp"
+                    android:paddingTop="4dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="4dp"
+                    android:text="0 QAR"
+                    android:textAlignment="center"
+                    android:textColor="@color/black_color"
+                    android:textSize="8sp" />
+
+
+            </RelativeLayout>
+
+            <include
                 android:id="@+id/notification"
-                android:layout_width="19dp"
-                android:layout_height="20dp"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="25dp"
                 android:layout_toStartOf="@+id/wallet"
-                android:src="@mipmap/notification" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:layout_centerVertical="true"
+                layout="@layout/badge_layout"/>
 
             <ImageView
                 android:id="@+id/search_view"
@@ -67,21 +93,6 @@
                 android:layout_toStartOf="@+id/notification"
                 android:src="@mipmap/search_grey" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="13dp"
-                android:background="@drawable/cardview_border_background"
-                android:paddingStart="6dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="5dp"
-                android:paddingBottom="3dp"
-                android:text="100 QAR"
-                android:textAlignment="center"
-                android:textColor="@color/orange_colour"
-                android:textSize="6sp" />
 
             <EditText
                 android:id="@+id/search_edit_text"
@@ -99,6 +110,11 @@
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/pullToRefresh"
+        android:layout_height="match_parent">
 
     <ScrollView
         android:id="@id/main_layout"
@@ -350,5 +366,7 @@
 
         </RelativeLayout>
     </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

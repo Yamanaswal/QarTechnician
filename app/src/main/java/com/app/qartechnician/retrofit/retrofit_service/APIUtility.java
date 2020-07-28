@@ -4,6 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.app.qartechnician.R;
+import com.app.qartechnician.models.calendar_management.calendar_management_request.CalendarManageRequest;
+import com.app.qartechnician.models.calendar_management.calendar_management_response.CalendarManageResponse;
+import com.app.qartechnician.models.calendar_view.calendar_request.CalendarViewRequest;
+import com.app.qartechnician.models.calendar_view.calendar_response.CalendarViewResponse;
 import com.app.qartechnician.models.change_password.change_password_request.ChangePasswordRequest;
 import com.app.qartechnician.models.change_password.change_password_response.ChangePasswordResponse;
 import com.app.qartechnician.models.dashboard_data.dashboard_data_request.DashboardDataRequest;
@@ -574,7 +578,6 @@ public class APIUtility {
         }
     }
 
-
     //Multi-Part - Edit Profile
     public void profileUpdate(Context context, final boolean isDialog, String token, MultipartBody multipartBody, final APIResponseListener<ProfileUpdateResponse> apiResponseListener) {
         if (CommonUtils.isNetworkAvailable(context)) {
@@ -610,4 +613,66 @@ public class APIUtility {
             CommonUtils.alert(context, context.getResources().getString(R.string.no_internet_text));
         }
     }
+
+    //Calender View
+    public void calendarView(Context context, final boolean isDialog, CalendarViewRequest requestModel, final APIResponseListener<CalendarViewResponse> apiResponseListener) {
+        if (CommonUtils.isNetworkAvailable(context)) {
+
+            showDialog(context, isDialog);
+            mApiService.calendarView(requestModel).enqueue(new Callback<CalendarViewResponse>() {
+                @Override
+                public void onResponse(Call<CalendarViewResponse> call, Response<CalendarViewResponse> response) {
+                    if (response.body() != null) {
+                        if (response.body().getCode() == 1) {
+                            apiResponseListener.onReceiveResponse(response.body());
+                        } else {
+                            apiResponseListener.onStatusFailed(response.body());
+                        }
+                    }
+                    dismissDialog(isDialog);
+                }
+
+                @Override
+                public void onFailure(Call<CalendarViewResponse> call, Throwable throwable) {
+                    apiResponseListener.onFailure();
+                    dismissDialog(isDialog);
+                }
+            });
+        } else {
+            dismissDialog(isDialog);
+            CommonUtils.alert(context, context.getResources().getString(R.string.no_internet_text));
+        }
+    }
+
+    //Calender Management
+    public void calendarManage(Context context, final boolean isDialog, String token, CalendarManageRequest requestModel, final APIResponseListener<CalendarManageResponse> apiResponseListener) {
+        if (CommonUtils.isNetworkAvailable(context)) {
+
+            showDialog(context, isDialog);
+            mApiService.calendarManage(token, requestModel).enqueue(new Callback<CalendarManageResponse>() {
+                @Override
+                public void onResponse(Call<CalendarManageResponse> call, Response<CalendarManageResponse> response) {
+                    if (response.body() != null) {
+                        if (response.body().getCode() == 1) {
+                            apiResponseListener.onReceiveResponse(response.body());
+                        } else {
+                            apiResponseListener.onStatusFailed(response.body());
+                        }
+                    }
+                    dismissDialog(isDialog);
+                }
+
+                @Override
+                public void onFailure(Call<CalendarManageResponse> call, Throwable throwable) {
+                    apiResponseListener.onFailure();
+                    dismissDialog(isDialog);
+                }
+            });
+        } else {
+            dismissDialog(isDialog);
+            CommonUtils.alert(context, context.getResources().getString(R.string.no_internet_text));
+        }
+    }
+
+
 }

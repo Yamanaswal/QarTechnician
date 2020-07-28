@@ -188,12 +188,13 @@
                 <ImageView
                     android:id="@+id/my_car_icon"
                     android:layout_width="17.04dp"
+                    android:tint="@android:color/black"
                     android:layout_height="17.06dp"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="14.13dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/noun_calendar" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -237,11 +238,12 @@
                     android:id="@+id/my_address_icon"
                     android:layout_width="17.6dp"
                     android:layout_height="17.5dp"
+                    android:tint="@android:color/black"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="14.13dp"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/noun_calendar" />
 
                 <TextView
                     android:layout_width="wrap_content"

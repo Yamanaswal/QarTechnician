@@ -154,6 +154,8 @@
     <string name="create_report">Create Report</string>
     <string name="allow_auto_detection">Allow Auto Detection</string>
     <string name="search_location">Search Location</string>
+    <string name="chats">Chats</string>
+    <string name="search_here">Search Here</string>
 
     <!--    Technician Management Strings -->
     <string-array name="job_update">

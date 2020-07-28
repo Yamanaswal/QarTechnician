@@ -1,5 +1,9 @@
 package com.app.qartechnician.retrofit.retrofit_service;
 
+import com.app.qartechnician.models.calendar_management.calendar_management_request.CalendarManageRequest;
+import com.app.qartechnician.models.calendar_management.calendar_management_response.CalendarManageResponse;
+import com.app.qartechnician.models.calendar_view.calendar_request.CalendarViewRequest;
+import com.app.qartechnician.models.calendar_view.calendar_response.CalendarViewResponse;
 import com.app.qartechnician.models.change_password.change_password_request.ChangePasswordRequest;
 import com.app.qartechnician.models.change_password.change_password_response.ChangePasswordResponse;
 import com.app.qartechnician.models.dashboard_data.dashboard_data_request.DashboardDataRequest;
@@ -92,5 +96,10 @@ public interface APIService {
     @POST("api/technician/profile/update/both")
     Call<ProfileUpdateResponse> profileUpdate(@Header("Authorization") String token, @Body RequestBody requestBody);
 
+    @POST("api/calender/technician/view")
+    Call<CalendarViewResponse> calendarView(@Body CalendarViewRequest calendarViewRequest);
+
+    @POST("api/calender/technician/unavailable")
+    Call<CalendarManageResponse> calendarManage(@Header("Authorization") String token, @Body CalendarManageRequest calenderManageRequest);
 
 }
